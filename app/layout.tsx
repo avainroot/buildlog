@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Layout from "@/components/Layout/Layout";
 
-const instrumentSans = Instrument_Sans({subsets:['latin'],variable:'--font-sans'});
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,9 +32,19 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={cn("h-full", "antialiased", "dark", geistSans.variable, geistMono.variable, "font-sans", instrumentSans.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        "dark",
+        geistSans.variable,
+        geistMono.variable,
+        "font-sans",
+        instrumentSans.variable,
+      )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Layout>{children}</Layout>
+      </body>
     </html>
   );
 }

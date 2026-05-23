@@ -45,5 +45,9 @@ AGENTS.md
 CLAUDE.md
 
 # Database
-/generated/prisma
+/app/generated/prisma
 /db/*.db
+
+
+# IDE
+.vscode
