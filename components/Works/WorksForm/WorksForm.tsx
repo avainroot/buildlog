@@ -1,5 +1,5 @@
 const WorksForm = () => {
-  return <div> WorksForm</div>;
+  return <div>WorksForm</div>;
 };
 
 export default WorksForm;

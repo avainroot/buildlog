@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Layout from "@/components/Layout/Layout";
+import Providers from "@/providers";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -43,7 +44,9 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex">
-        <Layout>{children}</Layout>
+        <Providers>
+          <Layout>{children}</Layout>
+        </Providers>
       </body>
     </html>
   );
