@@ -3,6 +3,8 @@ import { worksOptions, worksTypeOptions } from "@/lib/api";
 import { getQueryClient } from "@/lib/queryClient";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   const queryClient = getQueryClient();
   void queryClient.prefetchQuery(worksTypeOptions());
