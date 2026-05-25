@@ -2,13 +2,18 @@
 
 import { worksOptions } from "@/lib/api";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import WorksTable from "../WorksTable/WorksTable";
 
 const WorksList = () => {
   const { data: works } = useSuspenseQuery(worksOptions());
 
-  console.log(works);
+  if (!works?.length) {
+    return (
+      <div className="text-muted-foreground text-center py-4">Нет данных</div>
+    );
+  }
 
-  return <div className="px-2">WorksList</div>;
+  return <WorksTable data={works} />;
 };
 
 export default WorksList;

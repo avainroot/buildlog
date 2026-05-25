@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Sans } from "next/font/google";
+import { Geist, Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Layout from "@/components/Layout/Layout";
 import Providers from "@/providers";
 
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
+const manrope = Manrope({
+  subsets: ["latin", "cyrillic"],
   variable: "--font-sans",
 });
 
@@ -40,7 +40,7 @@ export default function RootLayout({
         geistSans.variable,
         geistMono.variable,
         "font-sans",
-        instrumentSans.variable,
+        manrope.variable,
       )}
     >
       <body className="min-h-full flex">

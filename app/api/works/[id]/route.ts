@@ -1,21 +1,22 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse, type NextRequest } from "next/server";
-import { z } from "zod";
+import * as z from "zod";
 
 const updateWorkSchema = z.object({
-  date: z.coerce.date().optional(),
-  workTypeId: z.number().optional(),
-  volume: z.number().optional(),
-  unit: z.string().optional(),
-  executorName: z.string().optional(),
+  date: z.iso.datetime(),
+  workTypeId: z.number().int().positive(),
+  volume: z.number().positive(),
+  unit: z.string().min(1).max(20),
+  executorName: z.string().min(1).max(100),
 });
 
 export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } },
+  _: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id: rawId } = await params;
+    const id = parseInt(rawId);
 
     await prisma.workEntry.delete({
       where: { id },
@@ -33,10 +34,11 @@ export async function DELETE(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id: rawId } = await params;
+    const id = parseInt(rawId);
     const body = await request.json();
     const validData = updateWorkSchema.parse(body);
 
