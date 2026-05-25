@@ -15,6 +15,7 @@ ARG NEXT_PUBLIC_API_BASE_URL
 RUN echo "DATABASE_URL=${DATABASE_URL}" > .env && \
     echo "NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}" >> .env
 
+RUN pnpm exec prisma generate
 RUN pnpm exec next telemetry disable
 RUN pnpm build
 
